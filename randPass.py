@@ -10,10 +10,10 @@ filename = 'words.txt' # allowed word list file directory: words.txt
 used_words = ["0"]*word_count
 
  # Return a random word form the allowed words list
-def generate_random_word(filename):
+def generate_wordlist(filename):
     with open(filename, 'r') as file:
-        words = file.readlines()
-        return random.choice(words).strip() 
+        wordlist = file.readlines()
+        return wordlist
         
 def clear_screen():
     if os.name == "posix":  # If we are on Linux or MacOS
@@ -55,7 +55,7 @@ def check_wordlist_compliance(filename):
         if count is word_count+1:
             break
     if "0" in compliant_words:
-        print("[\033[33mWARN\033[0m] The wordlist was not compliant, generated new one.","\n")
+        print("[\033[33mWARN\033[0m] The wordlist was too short, generated new one.","\n")
         make_compliant_wordlist(filename)
         return
     
@@ -63,12 +63,12 @@ def check_wordlist_compliance(filename):
 def main():
     clear_screen()
     check_wordlist_compliance(filename)
+    wordlist=generate_wordlist(filename)
     while True:
         for i in range(word_count):
             random_number = random.randint(1000, 9999)
             while True: # Loop until we find a words that isnt in the used_words list
-                check_wordlist_compliance(filename)
-                random_word = generate_random_word(filename)
+                random_word = random.choice(wordlist).strip() 
                 if random_word not in used_words:
                     break
             used_words[i] = random_word
