@@ -45,7 +45,7 @@ def check_wordlist_compliance(filename):
         make_compliant_wordlist(filename)
         return
     
-     # loops though the word list until it finds 6 unique words
+     # loops though the word list until it finds enough unique words
     count=0
     for word in words:
         if word not in compliant_words:
