@@ -3,7 +3,10 @@ import os
 
  # Configure for use case
 word_count=5           # amount of words to generate every time the user regens: 5
+number_mask="9"*4
 filename = 'words.txt' # allowed word list file directory: words.txt
+prefix=""
+subfix=""
 
  # Return a random word form the allowed words list
 def generate_wordlist(filename):
@@ -59,6 +62,25 @@ def check_wordlist_compliance(filename):
         make_compliant_wordlist(filename)
         return
 
+def format_word(random_word):
+    new_random_word = ""
+    for char in random_word:
+        if char.isupper():
+            new_random_word += '\033[4m\033[37m\033[1m' + char + '\033[0m' 
+        elif char.islower():
+            new_random_word += '\033[37m' + char + '\033[0m'
+        elif char.isdigit():
+            new_random_word += '\033[36m\033[1m' + char + '\033[0m'
+        else:
+            new_random_word += '\033[31m\033[1m' + char + '\033[0m'
+    return new_random_word+'\033[0m'
+
+def generate_pin_number(mask):
+    pin=""
+    for char in mask:
+        pin += str(random.randint(0, int(char)))
+    return pin
+
 def main():
      # Used to store the previously used words
      # avoids same words when generating multiple words and makes regens feel more random
@@ -69,13 +91,13 @@ def main():
     wordlist=generate_wordlist(filename)
     while True:
         for i in range(word_count):
-            random_number = random.randint(1000, 9999)
             while True: # Loop until we find a words that isnt in the used_words list
                 random_word = random.choice(wordlist).strip() 
                 if random_word not in used_words:
                     break
             used_words[i] = random_word
-            print("   [",i+1,"]\033[37m\033[1m ",random_word+"\033[36m"+str(random_number),"\033[0m")
+            format_word(random_word)
+            print("   \033[32m[",i+1,"]\033[0m", format_word(prefix+random_word+generate_pin_number(number_mask)+subfix))
         input("\nPress Enter to regenerate...")
         clear_screen()
 
