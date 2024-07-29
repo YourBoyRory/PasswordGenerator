@@ -12,4 +12,4 @@ The number of passphrases that are generated at one time, along with the allowed
 For added security, it is best to use your own word list, but if none is provided, one with fruits will be generated for you.
 
 The allowed wordlist must have +1 the number of passphrases to generate; by default, this would be 6 words in the file.
-If the wordlist is missing or there are not enough letters for the script to generate X unique words, a new word list will be generated.
+If the wordlist is missing or there are not enough words for the script to generate X unique words, a new word list will be generated.
