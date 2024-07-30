@@ -8,7 +8,7 @@ class Config:
     value = {
         'keyphrases': 5,             # amount of keyphrases to generate every time the user regens
         'number_mask': '0000',       # Mask for the number generated. "0000" - 4 didgets 0-9, "1000" first diget is 1-9 last 3 are 0-9
-        'sufix_selection': '!@#$^&*',      # Selects a random char from this string to sufix the keyphrase, use this if you need a special character "!@#$^&".
+        'sufix_selection': ' ',      # Selects a random char from this string to sufix the keyphrase, use this if you need a special character "!@#$^&".
 
         'filename': 'words.txt',     # allowed word list file directory
         'wordlist_required': False,  # Do not use the default wordlist
