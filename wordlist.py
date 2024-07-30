@@ -40,18 +40,19 @@ class Wordlist:
 
      # Return if wordlist is complaint
     def check_wordlist_compliance(self, wordlist):
+        
         # Used to store at least keyphrases+1 unique words
-        compliant_words = ["0"]*int(self.config.value['keyphrases']+1)
+        compliant_words = ["0"]*int(self.config.value['keyphrases']+self.config.value['word_amount'])
         # Loops though the word list until it finds enough unique words
         count=0
         for word in wordlist:
             if word not in compliant_words:
                 compliant_words[count] = wordlist[count]
                 count=count+1
-            if count is self.config.value['keyphrases']+1:
+            if count is self.config.value['keyphrases']+self.config.value['word_amount']:
                 break
         # if count is not equal to keyphrases+1 then we looped the entire array without finding enough unique words
-        if count is not self.config.value['keyphrases']+1:
+        if count is not self.config.value['keyphrases']+self.config.value['word_amount']:
             print("[ \033[31mERROR\033[0m ] The provided wordlist is too short and cannot be used!")
             if self.config.value['wordlist_required']:
                 input("[ \033[31m\033[1mFATAL\033[0m ] A wordlist is required on this machine!")
