@@ -12,7 +12,7 @@ By default the script will generate 5 Random passwords with 4 random numbers at 
       [ 4 ] Melon6493
       [ 5 ] Strawberry2410
 
-The number of passphrases that are generated at one time, along with the allowed wordlist, number mask, and other options can easily be changed in a confige file.
+The number of passphrases that are generated at one time, along with the allowed wordlist, number mask, and other options can easily be changed in a config file.
 For added security, it is best to use your own word list, but if no file is provided, one with 25 fruits will be used.
 Examples of both the word list format and the config can be downloaded in releases
 
@@ -21,16 +21,16 @@ Wordlist
 The allowed word list is used to to generate easy to remeber and say "passphrases"
 - The allowed wordlist must have +1 the number of "keyphrases" to generate; by default, this would be 6 words in the file as keyphrases is set to 5.
 - If the wordlist is missing or there are not enough words for the script to generate X unique words, a default one will be uses as long as wordlist_required is set to false.
-- By default the script looks for a file named word.txt in the same directoy as the executible but this behavior can be changed in the config.
+- By default, the script looks for a file named word.txt in the same directory as the executable but this behavior can be changed in the config.
 
 ## Config ##
-A ``config.ini`` file can be use to constomize the passwords the program genrates. The configes will be checked in this order
+A ``config.ini`` file can be used to customize the passwords the program generates. The configs will be checked in this order
 - The ``config.ini`` can be place in the same directory as the executable and it will be used over all other configs.
 - The config can also be place in ``$USERHOME/.config/PasswordGenerator/config.ini`` or ``$USERHOME/.PasswordGenerator/config.ini`` in the uses home folder on Linux, Mac, or Windows.
   These user configs will be checked before the system wide config but after the one in the same directory as the executable
 - The system wide config will be used last if it exists, it will be placed in ``/ProgramData/PasswordGenerator/config.ini`` on windows or ``/etc/PasswordGenerator/config.ini`` on Linux and Mac.
   
-If the config does not exist or if a value does not exist the script will go down the hierarcy until it finds the value in one of the configs or it will use the default value.
+If the config does not exist or if a value does not exist, the script will go down the hierarchy until it finds the value in one of the configs or it will use the default value.
 #### Default ``config.ini`` with documentation ####
 
     [General]
