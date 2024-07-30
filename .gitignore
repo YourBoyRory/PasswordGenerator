@@ -1,5 +1,6 @@
 *.txt
 *.ini
+*.spec
 __pycache__
 build/
 dist/

@@ -1,0 +1,1 @@
+~/.local/bin/pyinstaller --onefile ./PasswordGenerator.py
