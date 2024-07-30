@@ -1,9 +1,10 @@
 import random
 import os
 from wordlist import Wordlist
-from config import Config as config
+from config import Config
 
 def clear_screen():
+    return
     if os.name == "posix":  # If we are on Linux or MacOS
         os.system('clear')
     else:                   # If we are on Windows
@@ -30,26 +31,31 @@ def generate_pin(mask):
     return pin
 
 def main():
+
+     # load config
+    config = Config()
+    #config.save_config()
+
      # Used to store the previously used words
      # avoids same words when generating multiple words and makes regens feel more random
-    used_words = ["0"]*config.keyphrases
+    used_words = ["0"]*config.value['keyphrases']
 
     clear_screen()
     wordlist = Wordlist(config)
     #wordlist.save_file()
     while True:
-        for i in range(config.keyphrases):
+        for i in range(config.value['keyphrases']):
             random_word=""
-            for j in range(config.word_amount):
+            for j in range(config.value['word_amount']):
                 while True: # Loop until we find a words that isnt in the used_words list
                     temp_word = random.choice(wordlist.wordlist).strip()
                     if random_word+temp_word not in used_words and temp_word not in random_word:
                         random_word += temp_word
-                        if j+1 is not config.word_amount:
-                            random_word += word_divider
+                        if j+1 is not config.value['word_amount']:
+                            random_word += config.value['word_divider']
                         break
             used_words[i] = random_word
-            print("   \033[32m[",i+1,"]\033[0m", format_keyphrase(random_word+generate_pin(config.number_mask)+random.choice(config.sufix_selection)))
+            print("   \033[32m[",i+1,"]\033[0m", format_keyphrase(random_word+generate_pin(config.value['number_mask'])+random.choice(config.value['sufix_selection'])))
         input("\nPress Enter to regenerate...")
         clear_screen()
 
