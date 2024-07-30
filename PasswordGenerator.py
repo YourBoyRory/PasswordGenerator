@@ -31,6 +31,8 @@ def generate_pin(mask):
 
 def main():
 
+    clear_screen()
+
      # load config
     config = Config()
     #config.save_config()
@@ -39,7 +41,6 @@ def main():
      # avoids same words when generating multiple words and makes regens feel more random
     used_words = ["0"]*config.value['keyphrases']
 
-    clear_screen()
     wordlist = Wordlist(config)
     #wordlist.save_file()
     while True:
