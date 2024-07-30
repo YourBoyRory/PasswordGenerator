@@ -4,7 +4,6 @@ from wordlist import Wordlist
 from config import Config
 
 def clear_screen():
-    return
     if os.name == "posix":  # If we are on Linux or MacOS
         os.system('clear')
     else:                   # If we are on Windows
