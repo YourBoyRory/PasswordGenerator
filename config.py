@@ -41,9 +41,7 @@ class Config:
         # loads config values
         self.parser['General'] = { }
         self.parser['Wordlist'] = { }
-        print(self.systemwide_config, self.user_config2, self.user_config1, self.config_path)
         self.parser.read([self.systemwide_config, self.user_config2, self.user_config1, self.config_path])
-        print(self.parser)
             
          # General values
         self.value['keyphrases'] = self.parser['General'].getint('keyphrases', self.value['keyphrases'])
