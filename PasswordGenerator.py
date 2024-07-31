@@ -3,30 +3,11 @@ import os
 from wordlist import Wordlist
 from config import Config
 
-#    _____        _____
-#   / _ \ \      / / _ \
-#  | | | \ \ /\ / / | | |
-#  | |_| |\ V  V /| |_| |
-#   \___/  \_/\_/  \___/
-# Organized Web Operations
-# YourBoyRory
-
-def graphic():
-    print("\033[90m")
-    print("    _____        _____")
-    print("   / _ \\ \\      / / _ \\")
-    print("  | | | \\ \\ /\\ / / | | |")
-    print("  | |_| |\\ V  V /| |_| |")
-    print("   \___/  \\_/\\_/  \\___/")
-    print(" Organized Web Operations")
-    print(" YourBoyRory\033[0m")
-
 def clear_screen():
     if os.name == "posix":  # If we are on Linux or MacOS
         os.system('clear')
     else:                   # If we are on Windows
         os.system('cls')
-    #graphic()
 
 def format_keyphrase(random_word):
     new_random_word = ""
@@ -50,7 +31,6 @@ def generate_pin(mask):
 def main():
 
     clear_screen()
-    print(" ")
 
      # load config
     config = Config()

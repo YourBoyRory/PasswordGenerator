@@ -18,8 +18,10 @@ class Wordlist:
             self.wordlist = wordlist
         elif self.config.value['keyphrases']+self.config.value['word_amount'] >= len(self.wordlist):
             # checks if the config will work with the default wordlist, this stops hangs if its not big enough.
-            input("[ \033[31m\033[1mFATAL\033[0m ] The default wordlist is incompadible with provided config! Please reset the config or provide a wordlist with enough words.")
-            exit()
+            print("[ \033[31mERROR\033[0m ] The default wordlist is incompatible with provided config!")
+            print("[ \033[33mWARN\033[0m ] Falling back to default values. This may be undesired.")
+            self.config.load_default_config()
+            
 
      # reads in wordlist from file
     def read_file(self):
@@ -32,7 +34,7 @@ class Wordlist:
                 input("[ \033[31m\033[1mFATAL\033[0m ] A wordlist is required on this machine!")
                 exit()
             else:
-                print("[ \033[33mWARN\033[0m ] Using default wordlist")
+                print("[ \033[33mWARN\033[0m ] You are using the default wordlist, this list is publicly known and is insecure.")
                 return self.wordlist
 
      # Writes current wordlist, currently unused
@@ -58,12 +60,12 @@ class Wordlist:
                 break
         # if count is not equal to keyphrases+1 then we looped the entire array without finding enough unique words
         if count is not self.config.value['keyphrases']+self.config.value['word_amount']:
-            print("[ \033[31mERROR\033[0m ] The provided wordlist is too short and cannot be used!")
+            print("[ \033[31mERROR\033[0m ] The provided wordlist is too short and cannot be used with the current config values!")
             if self.config.value['wordlist_required']:
                 input("[ \033[31m\033[1mFATAL\033[0m ] A wordlist is required on this machine!")
                 exit()
             else:
-                print("[ \033[33mWARN\033[0m ] Using default wordlist")
+                print("[ \033[33mWARN\033[0m ] Falling back to default wordlist, this list is publicly known and is insecure.")
                 return False
         return True
 

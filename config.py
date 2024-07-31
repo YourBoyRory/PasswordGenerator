@@ -9,20 +9,25 @@ class Config:
     
 
      # default values
-    value = {
-        'keyphrases': 5,             # amount of keyphrases to generate every time the user regens
-        'number_mask': '0000',       # Mask for the number generated. "0000" - 4 didgets 0-9, "1000" first diget is 1-9 last 3 are 0-9
-        'sufix_selection': ' ',      # Selects a random char from this string to sufix the keyphrase, use this if you need a special character "!@#$^&".
-
-        'filename': 'words.txt',     # allowed word list file directory
-        'wordlist_required': False,  # Do not use the default wordlist
-        'word_amount': 1,            # amount of words to be selected from the allowed word list
-        'word_divider': '',          # divider that seperates each word in the keyphrase
-    }
+    value = { }
 
     def __init__(self):
+        self.load_default_config()
         self.get_config()
         self.read_config()
+
+    def load_default_config(self):
+        self.value = {
+            'keyphrases': 5,             # amount of keyphrases to generate every time the user regens
+            'number_mask': '0000',       # Mask for the number generated. "0000" - 4 didgets 0-9, "1000" first diget is 1-9 last 3 are 0-9
+            'sufix_selection': ' ',      # Selects a random char from this string to sufix the keyphrase, use this if you need a special character "!@#$^&".
+
+            'filename': 'words.txt',     # allowed word list file directory
+            'wordlist_required': False,  # Do not use the default wordlist
+            'word_amount': 1,            # amount of words to be selected from the allowed word list
+            'word_divider': '',          # divider that seperates each word in the keyphrase
+        }
+        
 
     def get_config(self):
         self.user_config1 = Path.home() / '.config' / 'PasswordGenerator' / self.config_path
@@ -59,7 +64,7 @@ class Config:
             self.value['word_divider'] = self.parser['Wordlist'].get('word_divider', self.value['word_divider'])
         except:
            print("[ \033[31mERROR\033[0m ] Malformed config.ini!")
-           print("[ \033[33mWARN\033[0m ] Falling back to default values.\n")
+           print("[ \033[33mWARN\033[0m ] Falling back to default values.")
            
 
     def save_config(self):
@@ -77,3 +82,4 @@ class Config:
         }
         with open('config.ini', 'w') as configfile:
             self.parser.write(configfile)
+            
