@@ -26,7 +26,7 @@ def clear_screen():
         os.system('clear')
     else:                   # If we are on Windows
         os.system('cls')
-    graphic()
+    #graphic()
 
 def format_keyphrase(random_word):
     new_random_word = ""
