@@ -44,6 +44,7 @@ def main():
     wordlist = Wordlist(config)
     #wordlist.save_file()
     while True:
+        print(" ")
         for i in range(config.value['keyphrases']):
             random_word=""
             for j in range(config.value['word_amount']):

@@ -1,6 +1,7 @@
 
 class Wordlist:
 
+     # Default word list
     wordlist = [
         "Apple", "Banana", "Mango", "Papaya", "Peach", "Orange",
         "Grape", "Kiwi", "Lemon", "Melon", "Pineapple", "Plum",
@@ -13,7 +14,12 @@ class Wordlist:
         self.config = config
         wordlist = self.read_file()
         if self.check_wordlist_compliance(wordlist):
+            # Wordlist is good
             self.wordlist = wordlist
+        elif self.config.value['keyphrases']+self.config.value['word_amount'] >= len(self.wordlist):
+            # checks if the config will work with the default wordlist, this stops hangs if its not big enough.
+            input("[ \033[31m\033[1mFATAL\033[0m ] The default wordlist is incompadible with provided config! Please reset the config or provide a wordlist with enough words.")
+            exit()
 
      # reads in wordlist from file
     def read_file(self):
@@ -26,7 +32,7 @@ class Wordlist:
                 input("[ \033[31m\033[1mFATAL\033[0m ] A wordlist is required on this machine!")
                 exit()
             else:
-                print("[ \033[33mWARN\033[0m ] Using default wordlist\n")
+                print("[ \033[33mWARN\033[0m ] Using default wordlist")
                 return self.wordlist
 
      # Writes current wordlist, currently unused
@@ -40,7 +46,6 @@ class Wordlist:
 
      # Return if wordlist is complaint
     def check_wordlist_compliance(self, wordlist):
-        
         # Used to store at least keyphrases+1 unique words
         compliant_words = ["0"]*int(self.config.value['keyphrases']+self.config.value['word_amount'])
         # Loops though the word list until it finds enough unique words
@@ -58,7 +63,7 @@ class Wordlist:
                 input("[ \033[31m\033[1mFATAL\033[0m ] A wordlist is required on this machine!")
                 exit()
             else:
-                print("[ \033[33mWARN\033[0m ] Using default wordlist\n")
+                print("[ \033[33mWARN\033[0m ] Using default wordlist")
                 return False
         return True
 
