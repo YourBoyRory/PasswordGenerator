@@ -26,10 +26,10 @@ The allowed word list is used to generate easy-to-remember and say "passphrases"
 ## Config ##
 A ``config.ini`` and ``override.ini`` files can be used to customize the passwords the program generates. The configs will be checked in this order
 - The system-wide ``override.ini`` uses the same formatting as the ``config.ini`` and will be used above all configs if it exists, it will be placed in ``/ProgramData/PasswordGenerator/override.ini`` on Windows or ``/etc/PasswordGenerator/override.ini`` on Linux and Mac.
-- A ``config.ini`` can be placed in the same directory as the executable and will be used instead of the main user config or the system config. The ``override.ini`` will always take precedence.
+- A ``config.ini`` can be placed in the same directory as the executable and will be used instead of the main user config or the system config. The ``override.ini`` will always take precedence over this config.
 - The user ``config.ini`` can also be placed in ``$USERHOME/.config/PasswordGenerator/config.ini`` or ``$USERHOME/.PasswordGenerator/config.ini`` in the uses home folder on Linux, Mac, or Windows.
-  These user configs will be checked before the system-wide ``config.ini`` but after the one in the same directory as the executable. The ``override.ini`` will always take precedence.
-- The system-wide ``config.ini`` will be used last if it exists, it will be placed in ``/ProgramData/PasswordGenerator/config.ini`` on Windows or ``/etc/PasswordGenerator/config.ini`` on Linux and Mac.
+  These user configs will be checked before the system-wide ``config.ini`` but after the one in the same directory as the executable. The ``override.ini`` will always take precedence over these configs.
+- The system-wide ``config.ini`` will be used last if it exists, it will be placed in ``/ProgramData/PasswordGenerator/config.ini`` on Windows or ``/etc/PasswordGenerator/config.ini`` on Linux and Mac. The ``override.ini`` will always take precedence over this config.
   
 If the config does not exist or if a value does not exist, the script will go down the hierarchy until it finds the value in one of the configs or it will use the default value.
 #### Default ``config.ini`` with documentation ####
