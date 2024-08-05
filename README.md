@@ -25,7 +25,7 @@ The allowed word list is used to generate easy-to-remember and say "passphrases"
 
 ## Config ##
 A ``config.ini`` and ``override.ini`` files can be used to customize the passwords the program generates. The configs will be checked in this order
-- The system-wide ``override.ini`` will be used above all configs if it exists, it will be placed in ``/ProgramData/PasswordGenerator/override.ini`` on Windows or ``/etc/PasswordGenerator/override.ini`` on Linux and Mac.
+- The system-wide ``override.ini`` uses the same formatting as the ``config.ini`` and will be used above all configs if it exists, it will be placed in ``/ProgramData/PasswordGenerator/override.ini`` on Windows or ``/etc/PasswordGenerator/override.ini`` on Linux and Mac.
 - The user ``config.ini`` can be place in the same directory as the executable and will be used instead of the main user config.
 - The user ``config.ini`` can also be placed in ``$USERHOME/.config/PasswordGenerator/config.ini`` or ``$USERHOME/.PasswordGenerator/config.ini`` in the uses home folder on Linux, Mac, or Windows.
   These user configs will be checked before the system-wide ``config.ini`` but after the one in the same directory as the executable. The ``override.ini`` will always take precedence.
