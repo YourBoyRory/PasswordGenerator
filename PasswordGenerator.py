@@ -25,7 +25,10 @@ def format_keyphrase(random_word):
 def generate_pin(mask):
     pin=""
     for char in mask:
-        pin += str(random.randint(int(char), 9))
+        try:
+            pin += str(random.randint(int(char), 9))
+        except:
+            pin += str(random.randint(ord(char)%9, 9))
     return pin
 
 def main():
